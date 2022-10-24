@@ -34,6 +34,9 @@ class Dynamic_Array:
         self._Array[index] = item
         self._size += 1
 
+    def prepend(self, item):
+        self.insert(0, item)
+
     def delete(self, i):
         if i < 0 or i > self._size:
             raise IndexError("Out of range.")
@@ -60,3 +63,4 @@ class Dynamic_Array:
             message += str(self._Array[i])
             message += " "
         return message
+
