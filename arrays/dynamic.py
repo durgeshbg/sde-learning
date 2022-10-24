@@ -6,7 +6,7 @@ class Dynamic_Array:
 
     def size(self):
         return self._size
-    
+
     def capacity(self):
         return self._capacity
 
@@ -27,8 +27,21 @@ class Dynamic_Array:
                 NewArray[i] = self._Array[i]
             self._Array = NewArray
             self._capacity = 2 * self._capacity
-        
+
         self._Array[self._size] = item
+        self._size += 1
+
+    def insert(self, index, item):
+        if self._capacity == self._size:
+            NewArray = [None] * (2 * self._capacity)
+            for i in range(self._size):
+                NewArray[i] = self._Array[i]
+            self._Array = NewArray
+            self._capacity = 2 * self._capacity
+            
+        for i in range(self._size, index, -1):
+            self._Array[i] = self._Array[i - 1]
+        self._Array[index] = item
         self._size += 1
 
     def remove(self, i):
@@ -38,11 +51,9 @@ class Dynamic_Array:
             self._Array[j] = self._Array[j + 1]
         self._size -= 1
 
-
     def __str__(self):
         message = ""
         for i in range(self._size):
             message += str(self._Array[i])
             message += " "
         return message
-    
