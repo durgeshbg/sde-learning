@@ -9,6 +9,12 @@ class Dynamic_Array:
             raise IndexError("Out of range.")
         return self._Array[i]
 
+    def pushback(self, item):
+        if self._capacity == self._size:
+            self._resize(2*self._capacity)
+        self._Array[self._size] = item
+        self._size += 1
+
     def _create(self,capacity):
         return [None] * capacity
 
