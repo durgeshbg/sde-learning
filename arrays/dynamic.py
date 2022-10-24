@@ -4,6 +4,10 @@ class Dynamic_Array:
         self._capacity = 1
         self._Array = self._create(self._capacity)
 
+    def get(self, i):
+        if i < 0 or i >= self._capacity:
+            raise IndexError("Out of range.")
+        return self._Array[i]
 
     def _create(self,capacity):
         return [None] * capacity
