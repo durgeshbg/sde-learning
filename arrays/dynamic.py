@@ -1,23 +1,9 @@
 class Dynamic_Array:
     def __init__(self):
-        self.size = 0
-        self.capacity = 10
+        self._size = 0
+        self._capacity = 1
+        self._Array = self._create(self._capacity)
 
-    @property
-    def size(self):
-        return self._size
+    def _create(self,capacity):
+        return [None] * capacity
 
-    @size.setter
-    def size(self, size):
-        self._size = size
-
-    @property
-    def capacity(self):
-        return self._capacity
-
-    @capacity.setter
-    def capacity(self, capacity):
-        self._capacity = capacity
-
-arr = Dynamic_Array()
-print(arr.size, arr.capacity)
