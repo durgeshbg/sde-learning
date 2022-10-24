@@ -34,6 +34,11 @@ class Dynamic_Array:
             message += str(self._Array[i])
             message += " "
         return message
+    
+    def is_empty(self):
+        if self._size == 0:
+            return True
+        return False
 
     def _create(self, capacity):
         return [None] * capacity
