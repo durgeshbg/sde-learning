@@ -22,8 +22,11 @@ class Dynamic_Array:
             self._Array[j] = self._Array[j + 1]
         self._size -= 1
 
-    def size():
+    def size(self):
         return self._size
+    
+    def capacity(self):
+        return self._capacity
 
     def __str__(self):
         message = ""
