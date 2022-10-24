@@ -40,6 +40,12 @@ class Dynamic_Array:
         for j in range(i, self._size - 1):
             self._Array[j] = self._Array[j + 1]
         self._size -= 1
+    
+    def find(self, item):
+        try:
+            return self._Array.index(item)
+        except ValueError:
+            return -1
 
     def _resize(self, capacity):
         NewArray = [None] * (capacity)
