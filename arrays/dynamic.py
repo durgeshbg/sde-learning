@@ -37,6 +37,13 @@ class Dynamic_Array:
     def prepend(self, item):
         self.insert(0, item)
 
+    def pop(self):
+        if self._size == (self._capacity // 4):
+            self._resize(capacity / 2)
+        item = self._Array[self._size]
+        self._size -= 1
+        return item
+
     def delete(self, i):
         if i < 0 or i > self._size:
             raise IndexError("Out of range.")
