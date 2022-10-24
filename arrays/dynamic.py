@@ -68,10 +68,3 @@ class Dynamic_Array:
             NewArray[i] = self._Array[i]
         self._Array = NewArray
         self._capacity = capacity
-
-    def __str__(self):
-        message = ""
-        for i in range(self._size):
-            message += str(self._Array[i])
-            message += " "
-        return message
