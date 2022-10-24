@@ -11,17 +11,25 @@ class Dynamic_Array:
 
     def pushback(self, item):
         if self._capacity == self._size:
-            self._resize(2*self._capacity)
+            self._resize(2 * self._capacity)
         self._Array[self._size] = item
         self._size += 1
 
     def remove(self, i):
         if i < 0 or i > self._size:
             raise IndexError("Out of range.")
-        for j in range(i,self._size-1):
-            self._Array[j] = self._Array[j+1]
+        for j in range(i, self._size - 1):
+            self._Array[j] = self._Array[j + 1]
+        self._size -= 1
 
-    def _create(self,capacity):
+    def __str__(self):
+        message = ""
+        for i in range(self._size):
+            message += str(self._Array[i])
+            message += " "
+        return message
+
+    def _create(self, capacity):
         return [None] * capacity
 
     def _resize(self, capacity):
