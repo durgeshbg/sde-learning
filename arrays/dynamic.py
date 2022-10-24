@@ -15,6 +15,12 @@ class Dynamic_Array:
         self._Array[self._size] = item
         self._size += 1
 
+    def remove(self, i):
+        if i < 0 or i > self._size:
+            raise IndexError("Out of range.")
+        for j in range(i,self._size-1):
+            self._Array[j] = self._Array[j+1]
+
     def _create(self,capacity):
         return [None] * capacity
 
