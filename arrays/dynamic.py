@@ -44,13 +44,18 @@ class Dynamic_Array:
         self._size -= 1
         return item
 
-    def delete(self, i):
-        if i < 0 or i > self._size:
+    def delete(self, index):
+        if index < 0 or index > self._size:
             raise IndexError("Out of range.")
-        for j in range(i, self._size - 1):
-            self._Array[j] = self._Array[j + 1]
+        for i in range(index, self._size - 1):
+            self._Array[i] = self._Array[i + 1]
         self._size -= 1
-    
+
+    def remove(self, item):
+        for i in range(self._size):
+            if item == self._Array[i]:
+                self.delete(i)
+
     def find(self, item):
         try:
             return self._Array.index(item)
@@ -70,4 +75,3 @@ class Dynamic_Array:
             message += str(self._Array[i])
             message += " "
         return message
-
