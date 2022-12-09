@@ -9,6 +9,7 @@ bool is_empty(int *);
 void at(int *, int);
 int *push(int *, int);
 int *insert(int *, int, int);
+int *prepend(int *, int);
 
 int main(void)
 {
@@ -31,6 +32,9 @@ int main(void)
     display(a);
 
     a = insert(a, 2, 99);
+    display(a);
+
+    a = prepend(a, 48);
     display(a);
     return 0;
 }
@@ -83,16 +87,33 @@ int *push(int *a, int x)
 }
 int *insert(int *a, int i, int x)
 {
-    int *t, s, j = 0;
+    int *t, *f, s, j = 0;
     s = size(a);
+    f = a;
     printf("\n* * * Inserting %d at %d * * *\n", x, i);
     t = malloc((s + 2) * sizeof(int));
-    while (*a != -999)
+    while (*f != -999)
     {
-        *(t + j) = i == j ? x : *(a++);
+        *(t + j) = i == j ? x : *(f++);
         j++;
     }
-    printf("%d\n", j);
+    *(t + s + 1) = -999;
+    free(a);
+    return t;
+}
+int *prepend(int *a, int x)
+{
+    int *t, *f, s, i = 1;
+    s = size(a);
+    f = a;
+    t = malloc((s + 2) * sizeof(int));
+    *t = x;
+    printf("\n- - - - Prepending %d - - - -\n", x);
+    while (*f != -999)
+    {
+        *(t + i) = *(f++);
+        i++;
+    }
     *(t + s + 1) = -999;
     free(a);
     return t;
