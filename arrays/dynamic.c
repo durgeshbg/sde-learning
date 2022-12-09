@@ -10,6 +10,7 @@ void at(int *, int);
 int *push(int *, int);
 int *insert(int *, int, int);
 int *prepend(int *, int);
+int pop(int *);
 
 int main(void)
 {
@@ -35,6 +36,11 @@ int main(void)
 
     a = prepend(a, 48);
     display(a);
+
+    int p = pop(a);
+    printf("\nPoped element: %d\n", p);
+    display(a);
+
     return 0;
 }
 
@@ -105,4 +111,12 @@ int *prepend(int *a, int x)
     }
     *a = x;
     return a;
+}
+int pop(int *a)
+{
+    int p, s;
+    s = size(a);
+    p = *(a + s - 1);
+    *(a + s - 1) = -999;
+    return p;
 }
