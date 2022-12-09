@@ -22,7 +22,6 @@ int main(void)
         *(a + i) = i;
     *(a + CAPACITY) = -999;
 
-    printf("Size: %d | Capacity: %d\n", size(a), CAPACITY);
     if (is_empty(a))
         printf("\nEmpty\n");
     display(a);
@@ -42,6 +41,7 @@ int main(void)
 void display(int *a)
 {
     int i = 0;
+    printf("Size: %d | Capacity: %d\n", size(a), CAPACITY);
     printf("----Integers:----\n");
     while (*(a + i) != -999)
     {
@@ -74,25 +74,23 @@ int *push(int *a, int x)
     printf("\n+ + + + Pushing %d + + + +\n", x);
     CAPACITY += 1;
     a = realloc(a, sizeof(int) * CAPACITY + 1);
-    *(a+CAPACITY-1) = x;
+    *(a + CAPACITY - 1) = x;
     *(a + CAPACITY) = -999;
     return a;
 }
-int *insert(int *a, int i, int x)
+int *insert(int *a, int index, int x)
 {
-    int *t, *f, s, j = 0;
-    s = size(a);
-    f = a;
-    printf("\n* * * Inserting %d at %d * * *\n", x, i);
-    t = malloc((s + 2) * sizeof(int));
-    while (*f != -999)
+    CAPACITY += 1;
+    int i = CAPACITY;
+    a = realloc(a, sizeof(int) * CAPACITY + 1);
+    printf("\n* * * Inserting %d at %d * * *\n", x, index);
+    while (i >= index)
     {
-        *(t + j) = i == j ? x : *(f++);
-        j++;
+        *(a + i) = *(a + i - 1);
+        i--;
     }
-    *(t + s + 1) = -999;
-    free(a);
-    return t;
+    *(a + index) = x;
+    return a;
 }
 int *prepend(int *a, int x)
 {
