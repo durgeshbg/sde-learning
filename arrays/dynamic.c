@@ -94,18 +94,15 @@ int *insert(int *a, int index, int x)
 }
 int *prepend(int *a, int x)
 {
-    int *t, *f, s, i = 1;
-    s = size(a);
-    f = a;
-    t = malloc((s + 2) * sizeof(int));
-    *t = x;
+    CAPACITY += 1;
+    int i = CAPACITY;
+    a = realloc(a, sizeof(int) * CAPACITY + 1);
     printf("\n- - - - Prepending %d - - - -\n", x);
-    while (*f != -999)
+    while (i > 0)
     {
-        *(t + i) = *(f++);
-        i++;
+        *(a + i) = *(a + i - 1);
+        i--;
     }
-    *(t + s + 1) = -999;
-    free(a);
-    return t;
+    *a = x;
+    return a;
 }
