@@ -114,9 +114,9 @@ int *prepend(int *a, int x)
 }
 int pop(int *a)
 {
-    int p, s;
-    s = size(a);
-    p = *(a + s - 1);
-    *(a + s - 1) = -999;
+    int p = *(a + size(a) - 1);
+    CAPACITY--;
+    a = realloc(a, sizeof(int) * CAPACITY + 1);
+    *(a + CAPACITY) = -999;
     return p;
 }
