@@ -13,6 +13,7 @@ int *prepend(int *, int);
 int pop(int *);
 int *delete(int *, int);
 int *rem(int *, int);
+int find(int *, int);
 
 int main(void)
 {
@@ -49,6 +50,11 @@ int main(void)
     a = rem(a, 99);
     display(a);
 
+    int x = find(a, 7);
+    if (x == -1)
+        printf("Search unsuccessful.\n");
+    else
+        printf("Element %d found at %d.\n", 1, x);
 
     return 0;
 }
@@ -151,4 +157,14 @@ int *rem(int *a, int x)
             a = delete (a, i);
     }
     return a;
+}
+
+int find(int *a, int x)
+{
+    for (int i = 0; i < CAPACITY; i++)
+    {
+        if (*(a + i) == x)
+            return i;
+    }
+    return -1;
 }
