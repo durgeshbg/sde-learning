@@ -41,7 +41,7 @@ void display(int *a)
     printf("----Integers:----\n");
     while (*(a + i) != -999)
     {
-        printf("%d: %d\n", i , *(a + i));
+        printf("%d: %d\n", i, *(a + i));
         i++;
     }
 }
@@ -78,6 +78,7 @@ int *push(int *a, int x)
     }
     *(t + s) = x;
     *(t + s + 1) = -999;
+    free(a);
     return t;
 }
 int *insert(int *a, int i, int x)
@@ -91,7 +92,8 @@ int *insert(int *a, int i, int x)
         *(t + j) = i == j ? x : *(a++);
         j++;
     }
-    printf("%d\n",j);
+    printf("%d\n", j);
     *(t + s + 1) = -999;
+    free(a);
     return t;
 }
