@@ -71,19 +71,12 @@ void at(int *a, int i)
 }
 int *push(int *a, int x)
 {
-    int *t, s, i = 0;
-    s = size(a);
-    t = malloc((s + 2) * sizeof(int));
     printf("\n+ + + + Pushing %d + + + +\n", x);
-    while (*(a + i) != -999)
-    {
-        *(t + i) = *(a + i);
-        i++;
-    }
-    *(t + s) = x;
-    *(t + s + 1) = -999;
-    free(a);
-    return t;
+    CAPACITY += 1;
+    a = realloc(a, sizeof(int) * CAPACITY + 1);
+    *(a+CAPACITY-1) = x;
+    *(a + CAPACITY) = -999;
+    return a;
 }
 int *insert(int *a, int i, int x)
 {
