@@ -11,6 +11,7 @@ int *push(int *, int);
 int *insert(int *, int, int);
 int *prepend(int *, int);
 int pop(int *);
+int *delete(int *, int);
 
 int main(void)
 {
@@ -28,7 +29,7 @@ int main(void)
     display(a);
 
     at(a, 1);
-    a = push(a, 5);
+    a = push(a, 99);
     display(a);
 
     a = insert(a, 2, 99);
@@ -41,6 +42,8 @@ int main(void)
     printf("\nPoped element: %d\n", p);
     display(a);
 
+    a = delete (a, 3);
+    display(a);
     return 0;
 }
 
@@ -119,4 +122,17 @@ int pop(int *a)
     a = realloc(a, sizeof(int) * CAPACITY + 1);
     *(a + CAPACITY) = -999;
     return p;
+}
+int *delete(int *a, int i)
+{
+    printf("\n- - - Deleting item at %d - - -\n", i);
+    while (i < CAPACITY)
+    {
+        *(a + i) = *(a + i + 1);
+        i++;
+    }
+    CAPACITY--;
+    a = realloc(a, sizeof(int) * CAPACITY + 1);
+    *(a + CAPACITY) = -999;
+    return a;
 }
