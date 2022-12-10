@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-int CAPACITY;
+int CAPACITY = 16;
 void display(int *);
 int size(int *);
 bool is_empty(int *);
@@ -14,21 +14,23 @@ int pop(int *);
 int *delete(int *, int);
 int *rem(int *, int);
 int find(int *, int);
+int *resize(int *);
 
 int main(void)
 {
-    int *a;
+    int *a, s;
     printf("Enter no. of elements to store: ");
-    scanf("%d", &CAPACITY);
-    a = malloc((CAPACITY + 1) * sizeof(int));
-    printf("Storing %d integers...\n", CAPACITY);
-    for (int i = 0; i < CAPACITY; i++)
+    scanf("%d", &s);
+    a = malloc((CAPACITY) * sizeof(int));
+    printf("Storing %d integers...\n", s);
+    for (int i = 0; i < s; i++)
         *(a + i) = i;
-    *(a + CAPACITY) = -999;
+    *(a + s) = -999;
 
     if (is_empty(a))
         printf("\nEmpty\n");
-    display(a);
+    else
+        display(a);
 
     at(a, 1);
     a = push(a, 99);
@@ -54,8 +56,9 @@ int main(void)
     if (x == -1)
         printf("Search unsuccessful.\n");
     else
-        printf("Element %d found at %d.\n", 1, x);
+        printf("Element %d found at %d.\n", 7, x);
 
+    free(a);
     return 0;
 }
 
@@ -85,86 +88,96 @@ bool is_empty(int *a)
 }
 void at(int *a, int i)
 {
-    if (i >= CAPACITY)
+    if (i >= size(a))
         printf("\nIndex out of bound\n");
     else
         printf("\nReturning element at %d: %d\n", i, *(a + i));
 }
 int *push(int *a, int x)
 {
+    int s = size(a);
     printf("\n+ + + + Pushing %d + + + +\n", x);
-    CAPACITY += 1;
-    a = realloc(a, sizeof(int) * CAPACITY + 1);
-    *(a + CAPACITY - 1) = x;
-    *(a + CAPACITY) = -999;
+    if (s >= CAPACITY)
+        resize(a);
+    *(a + s) = x;
+    *(a + s + 1) = -999;
     return a;
 }
 int *insert(int *a, int index, int x)
 {
-    CAPACITY += 1;
-    int i = CAPACITY;
-    a = realloc(a, sizeof(int) * CAPACITY + 1);
+    int s = size(a);
+    if (s >= CAPACITY)
+        resize(a);
     printf("\n* * * Inserting %d at %d * * *\n", x, index);
-    while (i >= index)
+    while (s >= index)
     {
-        *(a + i) = *(a + i - 1);
-        i--;
+        *(a + s + 1) = *(a + s);
+        s--;
     }
     *(a + index) = x;
     return a;
 }
 int *prepend(int *a, int x)
 {
-    CAPACITY += 1;
-    int i = CAPACITY;
-    a = realloc(a, sizeof(int) * CAPACITY + 1);
+    int s = size(a);
+    if (s >= CAPACITY)
+        resize(a);
     printf("\n- - - - Prepending %d - - - -\n", x);
-    while (i > 0)
+    while (s >= 0)
     {
-        *(a + i) = *(a + i - 1);
-        i--;
+        *(a + s + 1) = *(a + s);
+        s--;
     }
     *a = x;
     return a;
 }
 int pop(int *a)
 {
-    int p = *(a + size(a) - 1);
-    CAPACITY--;
-    a = realloc(a, sizeof(int) * CAPACITY + 1);
-    *(a + CAPACITY) = -999;
+    int p = *(a + size(a) - 1), s = size(a);
+    *(a + s - 1) = -999;
+    if (s <= CAPACITY / 4)
+        resize(a);
     return p;
 }
 int *delete(int *a, int i)
 {
+    int s = size(a);
     printf("\n- - - Deleting item at %d - - -\n", i);
-    while (i < CAPACITY)
+    while (i < s)
     {
         *(a + i) = *(a + i + 1);
         i++;
     }
-    CAPACITY--;
-    a = realloc(a, sizeof(int) * CAPACITY + 1);
     *(a + CAPACITY) = -999;
+    if (s <= CAPACITY / 4)
+        resize(a);
     return a;
 }
-
 int *rem(int *a, int x)
 {
-    for (int i = 0; i < CAPACITY; i++)
+    for (int i = 0; i < size(a); i++)
     {
         if (*(a + i) == x)
             a = delete (a, i);
     }
     return a;
 }
-
 int find(int *a, int x)
 {
-    for (int i = 0; i < CAPACITY; i++)
+    for (int i = 0; i < size(a); i++)
     {
         if (*(a + i) == x)
             return i;
     }
     return -1;
+}
+int *resize(int *a)
+{
+    int new_size;
+    if (size(a) <= CAPACITY / 4)
+        new_size = CAPACITY / 2;
+    else if (size(a) >= CAPACITY)
+        new_size = CAPACITY * 2;
+    CAPACITY = new_size;
+    return realloc(a, sizeof(int) * CAPACITY);
 }
