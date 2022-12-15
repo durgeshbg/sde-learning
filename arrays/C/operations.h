@@ -1,0 +1,13 @@
+extern int CAPACITY;
+void display(int *);
+int size(int *);
+int is_empty(int *);
+void at(int *, int);
+int *push(int *, int);
+int *insert(int *, int, int);
+int *prepend(int *, int);
+int pop(int *);
+int *del(int *, int);
+int *rem(int *, int);
+int find(int *, int);
+int *resize(int *);

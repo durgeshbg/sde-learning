@@ -1,67 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "operations.h"
 
 int CAPACITY = 16;
-void display(int *);
-int size(int *);
-int is_empty(int *);
-void at(int *, int);
-int *push(int *, int);
-int *insert(int *, int, int);
-int *prepend(int *, int);
-int pop(int *);
-int *delete(int *, int);
-int *rem(int *, int);
-int find(int *, int);
-int *resize(int *);
-
-int main(void)
-{
-    int *a, s;
-    printf("Enter no. of elements to store: ");
-    scanf("%d", &s);
-    a = malloc((CAPACITY) * sizeof(int));
-    printf("Storing %d integers...\n", s);
-    for (int i = 0; i < s; i++)
-        *(a + i) = i;
-    *(a + s) = -999;
-
-    if (is_empty(a)) {
-        printf("Array is Empty\n");
-        return -1;
-    }
-    else
-        display(a);
-
-    at(a, 1);
-    a = push(a, 99);
-    display(a);
-
-    a = insert(a, 2, 99);
-    display(a);
-
-    a = prepend(a, 99);
-    display(a);
-
-    int p = pop(a);
-    printf("\nPoped element: %d\n", p);
-    display(a);
-
-    a = delete (a, 5);
-    display(a);
-
-    a = rem(a, 99);
-    display(a);
-
-    int x = find(a, 7);
-    if (x == -1)
-        printf("Search unsuccessful.\n");
-    else
-        printf("Element %d found at %d.\n", 7, x);
-
-    free(a);
-    return 0;
-}
 
 void display(int *a)
 {
@@ -74,6 +15,7 @@ void display(int *a)
         i++;
     }
 }
+
 int size(int *a)
 {
     int i = 0;
@@ -81,12 +23,14 @@ int size(int *a)
         i++;
     return i;
 }
+
 int is_empty(int *a)
 {
     if (size(a) == 0)
         return 1;
     return 0;
 }
+
 void at(int *a, int i)
 {
     if (i >= size(a))
@@ -94,6 +38,7 @@ void at(int *a, int i)
     else
         printf("\nReturning element at %d: %d\n", i, *(a + i));
 }
+
 int *push(int *a, int x)
 {
     int s = size(a);
@@ -104,6 +49,7 @@ int *push(int *a, int x)
     *(a + s + 1) = -999;
     return a;
 }
+
 int *insert(int *a, int index, int x)
 {
     int s = size(a);
@@ -118,6 +64,7 @@ int *insert(int *a, int index, int x)
     *(a + index) = x;
     return a;
 }
+
 int *prepend(int *a, int x)
 {
     int s = size(a);
@@ -132,6 +79,7 @@ int *prepend(int *a, int x)
     *a = x;
     return a;
 }
+
 int pop(int *a)
 {
     int p = *(a + size(a) - 1), s = size(a);
@@ -140,7 +88,8 @@ int pop(int *a)
         resize(a);
     return p;
 }
-int *delete(int *a, int i)
+
+int *del(int *a, int i)
 {
     int s = size(a);
     printf("\n- - - Deleting item at %d - - -\n", i);
@@ -154,15 +103,17 @@ int *delete(int *a, int i)
         resize(a);
     return a;
 }
+
 int *rem(int *a, int x)
 {
     for (int i = 0; i < size(a); i++)
     {
         if (*(a + i) == x)
-            a = delete (a, i);
+            a = del(a, i);
     }
     return a;
 }
+
 int find(int *a, int x)
 {
     for (int i = 0; i < size(a); i++)
@@ -172,6 +123,7 @@ int find(int *a, int x)
     }
     return -1;
 }
+
 int *resize(int *a)
 {
     int new_size;
