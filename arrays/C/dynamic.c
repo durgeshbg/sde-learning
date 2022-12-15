@@ -1,11 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 int CAPACITY = 16;
 void display(int *);
 int size(int *);
-bool is_empty(int *);
+int is_empty(int *);
 void at(int *, int);
 int *push(int *, int);
 int *insert(int *, int, int);
@@ -27,8 +26,10 @@ int main(void)
         *(a + i) = i;
     *(a + s) = -999;
 
-    if (is_empty(a))
-        printf("\nEmpty\n");
+    if (is_empty(a)) {
+        printf("Array is Empty\n");
+        return -1;
+    }
     else
         display(a);
 
@@ -80,11 +81,11 @@ int size(int *a)
         i++;
     return i;
 }
-bool is_empty(int *a)
+int is_empty(int *a)
 {
     if (size(a) == 0)
-        return true;
-    return false;
+        return 1;
+    return 0;
 }
 void at(int *a, int i)
 {
