@@ -4,7 +4,7 @@
 
 Node *head, *tail;
 
-void PushFront(int key)
+void push_front(int key)
 {
     Node *node = (Node *)malloc(sizeof(Node));
     node->data = key;
@@ -14,7 +14,7 @@ void PushFront(int key)
         tail = head;
 }
 
-void PushBack(int key)
+void push_back(int key)
 {
     Node *node = (Node *)malloc(sizeof(Node));
     node->data = key;
@@ -31,7 +31,7 @@ void PushBack(int key)
     }
 }
 
-int PopFront()
+int pop_front()
 {
     int key;
     if (head == NULL)
@@ -43,7 +43,7 @@ int PopFront()
     return key;
 }
 
-int PopBack()
+int pop_back()
 {
     int key;
     Node *node = head;
@@ -90,4 +90,8 @@ int value_at(int n)
     for (int i = 0; i < n; i++)
         node = node->next;
     return node->data;
+}
+
+int front() {
+    return head->data;
 }
