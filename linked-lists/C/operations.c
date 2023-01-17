@@ -121,3 +121,15 @@ int insert(int index, int value)
     p->next = node;
     return 0;
 }
+
+int erase(int index)
+{
+    Node *node;
+    if (head == NULL)
+        return -1;
+    node = head;
+    for (int i = 0; i < index - 1; i++)
+        node = node->next;
+    node->next = node->next->next;
+    return 0;
+}
