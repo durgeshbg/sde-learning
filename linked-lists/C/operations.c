@@ -87,15 +87,21 @@ int empty()
 int value_at(int n)
 {
     Node *node = head;
+    if (n > size() || n < 0)
+        return -1;
     for (int i = 0; i < n; i++)
         node = node->next;
     return node->data;
 }
 
 int front() {
+    if (head == NULL)
+        return -1;
     return head->data;
 }
 
 int back() {
+    if (head == NULL)
+        return -1;
     return tail->data;
 }
