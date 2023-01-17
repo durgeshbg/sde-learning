@@ -13,3 +13,4 @@ int empty();
 int value_at(int);
 int front();
 int back();
+int insert(int, int);

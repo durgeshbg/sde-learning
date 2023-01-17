@@ -94,14 +94,30 @@ int value_at(int n)
     return node->data;
 }
 
-int front() {
+int front()
+{
     if (head == NULL)
         return -1;
     return head->data;
 }
 
-int back() {
+int back()
+{
     if (head == NULL)
         return -1;
     return tail->data;
+}
+
+int insert(int index, int value)
+{
+    Node *node, *p;
+    if (index > size() || index < 0)
+        return -1;
+    node->data = value;
+    p = head;
+    for (int i = 0; i < index - 1; i++)
+        p = p->next;
+    node->next = p->next;
+    p->next = node;
+    return 0;
 }
