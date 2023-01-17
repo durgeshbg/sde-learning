@@ -95,3 +95,7 @@ int value_at(int n)
 int front() {
     return head->data;
 }
+
+int back() {
+    return tail->data;
+}

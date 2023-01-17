@@ -12,3 +12,4 @@ int size();
 int empty();
 int value_at(int);
 int front();
+int back();
