@@ -51,10 +51,7 @@ int pop_back()
         return -1;
     key = tail->data;
     if (head == tail)
-    {
         head = NULL;
-        tail = NULL;
-    }
     else
     {
         while (node->next->next != NULL)
@@ -125,7 +122,7 @@ int insert(int index, int value)
 int erase(int index)
 {
     Node *node;
-    if (head == NULL)
+    if (index < 0 || index > size())
         return -1;
     node = head;
     for (int i = 0; i < index - 1; i++)
