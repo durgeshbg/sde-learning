@@ -42,3 +42,26 @@ int PopFront()
         tail = NULL;
     return key;
 }
+
+int PopBack()
+{
+    int key;
+    Node *node;
+    if (head == NULL)
+        return -1;
+    key = tail->data;
+    if (head == tail)
+    {
+        head = NULL;
+        tail = NULL;
+    }
+    else
+    {
+        node = head;
+        while (node->next->next != NULL)
+            node->next = node;
+        node->next = NULL;
+        tail = node;
+    }
+    return key;
+}

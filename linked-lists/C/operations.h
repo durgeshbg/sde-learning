@@ -7,3 +7,4 @@ typedef struct Node
 void PushFront(int);
 void PushBack(int);
 int PopFront();
+int PopBack();
