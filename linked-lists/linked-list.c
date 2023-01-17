@@ -8,14 +8,14 @@ typedef struct Node
 
 Node *head, *tail;
 
-Node *PushFront(int);
+void PushFront(int);
 
 int main(void)
 {
     return 0;
 }
 
-Node *PushFront(int key)
+void PushFront(int key)
 {
     Node *node = (Node *) malloc(sizeof(Node));
     node->data = key;
