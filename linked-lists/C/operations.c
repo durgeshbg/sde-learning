@@ -46,7 +46,7 @@ int PopFront()
 int PopBack()
 {
     int key;
-    Node *node;
+    Node *node = head;
     if (head == NULL)
         return -1;
     key = tail->data;
@@ -57,11 +57,22 @@ int PopBack()
     }
     else
     {
-        node = head;
         while (node->next->next != NULL)
             node->next = node;
         node->next = NULL;
         tail = node;
     }
     return key;
+}
+
+int size()
+{
+    int s = 0;
+    Node *node = head;
+    while (node->next != NULL)
+    {
+        s++;
+        node = node->next;
+    }
+    return s;
 }
