@@ -130,3 +130,14 @@ int erase(int index)
     node->next = node->next->next;
     return 0;
 }
+
+int value_n_from_end(int n)
+{
+    Node *node = head;
+    int index = size() - n + 1;
+    if (index < 0 || index > size())
+        return -1;
+    for (int i = 0; i < index; i++)
+        node = node->next;
+    return node->data;
+}
