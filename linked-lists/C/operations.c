@@ -159,3 +159,18 @@ int reverse()
     tail = head;
     head = curr;
 }
+
+int remove_value(int value)
+{
+    Node *node;
+    if (head == NULL)
+        return -1;
+    node = head;
+    while (node->next->data != value || node->next != NULL)
+        node = node->next;
+    if (node->data == value)
+        node->next = node->next->next;
+    else
+        return -1;
+    return 0;
+}
