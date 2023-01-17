@@ -58,7 +58,7 @@ int PopBack()
     else
     {
         while (node->next->next != NULL)
-            node->next = node;
+            node = node->next;
         node->next = NULL;
         tail = node;
     }
@@ -82,4 +82,12 @@ int empty()
     if (head == NULL)
         return 1;
     return 0;
+}
+
+int value_at(int n)
+{
+    Node *node = head;
+    for (int i = 0; i < n; i++)
+        node = node->next;
+    return node->data;
 }

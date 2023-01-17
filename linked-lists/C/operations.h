@@ -10,3 +10,4 @@ int PopFront();
 int PopBack();
 int size();
 int empty();
+int value_at(int);
