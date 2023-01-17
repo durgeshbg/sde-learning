@@ -2,9 +2,23 @@
 #include <stdlib.h>
 #include "operations.h"
 
-Node *head, *tail;
+void create(Node *head, Node *tail)
+{
+    Node *node = (Node *)malloc(sizeof(Node));
+    printf("Enter -999 to end the list.\n");
+    printf("Enter data: ");
+    scanf("%d", &node->data);
+    head = node;
+    while (node->data != -999)
+    {
+        node = node->next;
+        printf("Enter data: ");
+        scanf("%d", &node->data);
+    }
+    tail = node;
+}
 
-void push_front(int key)
+void push_front(Node *head, Node *tail, int key)
 {
     Node *node = (Node *)malloc(sizeof(Node));
     node->data = key;
@@ -14,7 +28,7 @@ void push_front(int key)
         tail = head;
 }
 
-void push_back(int key)
+void push_back(Node *head, Node *tail, int key)
 {
     Node *node = (Node *)malloc(sizeof(Node));
     node->data = key;
@@ -31,7 +45,7 @@ void push_back(int key)
     }
 }
 
-int pop_front()
+int pop_front(Node *head, Node *tail)
 {
     int key;
     if (head == NULL)
@@ -43,7 +57,7 @@ int pop_front()
     return key;
 }
 
-int pop_back()
+int pop_back(Node *head, Node *tail)
 {
     int key;
     Node *node = head;
@@ -62,7 +76,7 @@ int pop_back()
     return key;
 }
 
-int size()
+int size(Node *head)
 {
     int s = 0;
     Node *node = head;
@@ -74,41 +88,41 @@ int size()
     return s;
 }
 
-int empty()
+int empty(Node *head)
 {
     if (head == NULL)
         return 1;
     return 0;
 }
 
-int value_at(int n)
+int value_at(Node *head, int n)
 {
     Node *node = head;
-    if (n > size() || n < 0)
+    if (n > size(head) || n < 0)
         return -1;
     for (int i = 0; i < n; i++)
         node = node->next;
     return node->data;
 }
 
-int front()
+int front(Node *head)
 {
     if (head == NULL)
         return -1;
     return head->data;
 }
 
-int back()
+int back(Node *head, Node *tail)
 {
     if (head == NULL)
         return -1;
     return tail->data;
 }
 
-int insert(int index, int value)
+int insert(Node *head, int index, int value)
 {
     Node *node, *p;
-    if (index > size() || index < 0)
+    if (index > size(head) || index < 0)
         return -1;
     node->data = value;
     p = head;
@@ -119,10 +133,10 @@ int insert(int index, int value)
     return 0;
 }
 
-int erase(int index)
+int erase(Node *head, int index)
 {
     Node *node;
-    if (index < 0 || index > size())
+    if (index < 0 || index > size(head))
         return -1;
     node = head;
     for (int i = 0; i < index - 1; i++)
@@ -131,18 +145,18 @@ int erase(int index)
     return 0;
 }
 
-int value_n_from_end(int n)
+int value_n_from_end(Node *head, int n)
 {
     Node *node = head;
-    int index = size() - n + 1;
-    if (index < 0 || index > size())
+    int index = size(head) - n + 1;
+    if (index < 0 || index > size(head))
         return -1;
     for (int i = 0; i < index; i++)
         node = node->next;
     return node->data;
 }
 
-int reverse()
+int reverse(Node *head, Node *tail)
 {
     Node *curr, *prev, *temp;
     if (head == NULL)
@@ -160,7 +174,7 @@ int reverse()
     head = curr;
 }
 
-int remove_value(int value)
+int remove_value(Node *head, int value)
 {
     Node *node;
     if (head == NULL)
