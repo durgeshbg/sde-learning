@@ -9,6 +9,7 @@ typedef struct Node
 Node *head, *tail;
 
 void PushFront(int);
+void PushBack(int);
 
 int main(void)
 {
@@ -17,10 +18,26 @@ int main(void)
 
 void PushFront(int key)
 {
-    Node *node = (Node *) malloc(sizeof(Node));
+    Node *node = (Node *)malloc(sizeof(Node));
     node->data = key;
     node->next = head;
     head = node;
     if (tail == NULL)
         tail = head;
+}
+void PushBack(int key)
+{
+    Node *node = (Node *)malloc(sizeof(Node));
+    node->data = key;
+    node->next = NULL;
+    if (tail == NULL)
+    {
+        head = node;
+        tail = node;
+    }
+    else
+    {
+        tail->next = node;
+        tail = node;
+    }
 }
