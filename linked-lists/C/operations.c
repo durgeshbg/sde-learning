@@ -1,20 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-typedef struct Node
-{
-    int data;
-    struct Node *next;
-} Node;
+#include "operations.h"
 
 Node *head, *tail;
-
-void PushFront(int);
-void PushBack(int);
-
-int main(void)
-{
-    return 0;
-}
 
 void PushFront(int key)
 {
