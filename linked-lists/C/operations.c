@@ -76,3 +76,10 @@ int size()
     }
     return s;
 }
+
+int empty()
+{
+    if (head == NULL)
+        return 1;
+    return 0;
+}

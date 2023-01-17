@@ -9,3 +9,4 @@ void PushBack(int);
 int PopFront();
 int PopBack();
 int size();
+int empty();
