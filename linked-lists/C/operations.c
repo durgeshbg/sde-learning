@@ -141,3 +141,21 @@ int value_n_from_end(int n)
         node = node->next;
     return node->data;
 }
+
+int reverse()
+{
+    Node *curr, *prev, *temp;
+    if (head == NULL)
+        return -1;
+    curr = head;
+    prev = NULL;
+    while (curr != NULL)
+    {
+        temp = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = temp;
+    }
+    tail = head;
+    head = curr;
+}

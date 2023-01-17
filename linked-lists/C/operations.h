@@ -16,3 +16,4 @@ int back();
 int insert(int, int);
 int erase(int);
 int value_n_from_end(int);
+int reverse();
