@@ -7,67 +7,38 @@ typedef struct Node
     struct Node *next;
 } Node;
 
-void create(Node *, Node *);
-void push_front(Node *, Node *, int);
-void push_back(Node *, Node *, int);
-int pop_front(Node *, Node *);
-int pop_back(Node *, Node *);
-int size(Node *);
-int empty(Node *);
-int value_at(Node *, int);
-int front(Node *);
-int back(Node *, Node *);
-int insert(Node *, int, int);
-int erase(Node *, int);
-int value_n_from_end(Node *, int);
-int reverse(Node *, Node *);
-int remove_value(Node *, int);
+Node *head, *tail;
+
+void create();
+void traverse();
+void push_front(int);
+void push_back(int);
+int pop_front();
+int pop_back();
+int size();
+int empty();
+int value_at(int);
+int front();
+int back();
+int insert(int, int);
+int erase(int);
+int value_n_from_end(int);
+int reverse();
+int remove_value(int);
 
 int main(void)
 {
-    Node *head, *tail, *node;
-    create(head, tail);
-    node = head;
-    while (head != tail)
-    {
-        printf("%d ", node->data);
-        node = node->next;
-    }
+    create();
+    traverse();
+
+    printf("....Pushing 0 front....");
+    push_front(0);
+    traverse();
+
     return 0;
 }
 
-void create(Node *head, Node *tail)
-{
-    int n;
-    Node *node = (Node *)malloc(sizeof(Node));
-    printf("Enter -999 to end the list.\n");
-    printf("Enter data: ");
-    scanf("%d", &n);
-
-    head = node;
-    while (n != -999)
-    {
-        node->data = n;
-        node->next = (Node*) malloc(sizeof(Node));
-        node = node->next;
-        printf("Enter data: ");
-        scanf("%d", &n);
-        node->next = NULL;
-    }
-    tail = node;
-}
-
-void push_front(Node *head, Node *tail, int key)
-{
-    Node *node = (Node *)malloc(sizeof(Node));
-    node->data = key;
-    node->next = head;
-    head = node;
-    if (tail == NULL)
-        tail = head;
-}
-
-void push_back(Node *head, Node *tail, int key)
+void push_back(int key)
 {
     Node *node = (Node *)malloc(sizeof(Node));
     node->data = key;
@@ -84,7 +55,7 @@ void push_back(Node *head, Node *tail, int key)
     }
 }
 
-int pop_front(Node *head, Node *tail)
+int pop_front()
 {
     int key;
     if (head == NULL)
@@ -96,7 +67,7 @@ int pop_front(Node *head, Node *tail)
     return key;
 }
 
-int pop_back(Node *head, Node *tail)
+int pop_back()
 {
     int key;
     Node *node = head;
@@ -115,7 +86,7 @@ int pop_back(Node *head, Node *tail)
     return key;
 }
 
-int size(Node *head)
+int size()
 {
     int s = 0;
     Node *node = head;
@@ -127,41 +98,41 @@ int size(Node *head)
     return s;
 }
 
-int empty(Node *head)
+int empty()
 {
     if (head == NULL)
         return 1;
     return 0;
 }
 
-int value_at(Node *head, int n)
+int value_at(int n)
 {
     Node *node = head;
-    if (n > size(head) || n < 0)
+    if (n > size() || n < 0)
         return -1;
     for (int i = 0; i < n; i++)
         node = node->next;
     return node->data;
 }
 
-int front(Node *head)
+int front()
 {
     if (head == NULL)
         return -1;
     return head->data;
 }
 
-int back(Node *head, Node *tail)
+int back()
 {
     if (head == NULL)
         return -1;
     return tail->data;
 }
 
-int insert(Node *head, int index, int value)
+int insert(int index, int value)
 {
     Node *node, *p;
-    if (index > size(head) || index < 0)
+    if (index > size() || index < 0)
         return -1;
     node->data = value;
     p = head;
@@ -172,10 +143,10 @@ int insert(Node *head, int index, int value)
     return 0;
 }
 
-int erase(Node *head, int index)
+int erase(int index)
 {
     Node *node;
-    if (index < 0 || index > size(head))
+    if (index < 0 || index > size())
         return -1;
     node = head;
     for (int i = 0; i < index - 1; i++)
@@ -184,18 +155,18 @@ int erase(Node *head, int index)
     return 0;
 }
 
-int value_n_from_end(Node *head, int n)
+int value_n_from_end(int n)
 {
     Node *node = head;
-    int index = size(head) - n + 1;
-    if (index < 0 || index > size(head))
+    int index = size() - n + 1;
+    if (index < 0 || index > size())
         return -1;
     for (int i = 0; i < index; i++)
         node = node->next;
     return node->data;
 }
 
-int reverse(Node *head, Node *tail)
+int reverse()
 {
     Node *curr, *prev, *temp;
     if (head == NULL)
@@ -214,7 +185,7 @@ int reverse(Node *head, Node *tail)
     return 0;
 }
 
-int remove_value(Node *head, int value)
+int remove_value(int value)
 {
     Node *node;
     if (head == NULL)
@@ -227,4 +198,48 @@ int remove_value(Node *head, int value)
     else
         return -1;
     return 0;
+}
+
+void create()
+{
+    int n;
+    Node *node = (Node *)malloc(sizeof(Node));
+    printf("Enter -999 to end the list.\n");
+    printf("Enter data: ");
+    scanf("%d", &n);
+
+    head = node;
+    while (n != -999)
+    {
+        node->data = n;
+        node->next = (Node *)malloc(sizeof(Node));
+        node = node->next;
+        printf("Enter data: ");
+        scanf("%d", &n);
+        node->next = NULL;
+    }
+    tail = node;
+}
+
+void traverse()
+{
+    Node *node = head;
+    int i = 0;
+    printf("*-*-* Elements *-*-*\n");
+    while (node->next != NULL)
+    {
+        printf("%d. %d\n", i, node->data);
+        node = node->next;
+        i++;
+    }
+}
+
+void push_front(int key)
+{
+    Node *node = (Node *)malloc(sizeof(Node));
+    node->data = key;
+    node->next = head;
+    head = node;
+    if (tail == NULL)
+        tail = head;
 }
