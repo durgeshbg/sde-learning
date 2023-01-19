@@ -28,7 +28,7 @@ int remove_value(int);
 
 int main(void)
 {
-    int s;
+    int s, e;
 
     create(3);
     traverse();
@@ -46,15 +46,14 @@ int main(void)
     traverse();
 
     s = size();
-    printf("Size of the list: %d\n",s);
+    printf("Size of the list: %d\n", s);
 
-    return 0;
-}
+    e = empty();
+    if (e == 1)
+        printf("The list is empty.\n");
+    else
+        printf("The list is not empty.\n");
 
-int empty()
-{
-    if (head == NULL)
-        return 1;
     return 0;
 }
 
@@ -258,4 +257,11 @@ int size()
         node = node->next;
     }
     return s;
+}
+
+int empty()
+{
+    if (head == NULL)
+        return 1;
+    return 0;
 }
