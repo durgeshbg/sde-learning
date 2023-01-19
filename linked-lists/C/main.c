@@ -28,7 +28,7 @@ int remove_value(int);
 
 int main(void)
 {
-    int s, e, v, f, b, i, er;
+    int s, e, v, f, b, i, er, ve, rev, rv;
 
     create(4);
     traverse();
@@ -79,36 +79,18 @@ int main(void)
     else
         traverse();
 
-    return 0;
-}
+    ve = value_n_from_end(2);
+    if (ve == -1)
+        printf("Invalid index.\n");
+    else
+        printf("Value at %d from end: %d.\n",2,ve);
 
-int value_n_from_end(int n)
-{
-    Node *node = head;
-    int index = size() - n + 1;
-    if (index < 0 || index > size())
-        return -1;
-    for (int i = 0; i < index; i++)
-        node = node->next;
-    return node->data;
-}
+    rev = reverse();
+    if (rev == -1)
+        printf("List is empty.\n");
+    else
+        traverse();
 
-int reverse()
-{
-    Node *curr, *prev, *temp;
-    if (head == NULL)
-        return -1;
-    curr = head;
-    prev = NULL;
-    while (curr != NULL)
-    {
-        temp = curr->next;
-        curr->next = prev;
-        prev = curr;
-        curr = temp;
-    }
-    tail = head;
-    head = curr;
     return 0;
 }
 
@@ -291,5 +273,36 @@ int erase(int index)
     for (int i = 0; i < index - 1; i++)
         node = node->next;
     node->next = node->next->next;
+    return 0;
+}
+
+int value_n_from_end(int n)
+{
+    Node *node = head;
+    int index = size() - n;
+    if (index < 0 || index > size())
+        return -1;
+    for (int i = 0; i < index; i++)
+        node = node->next;
+    return node->data;
+}
+
+int reverse()
+{
+    Node *curr, *prev, *temp;
+    if (head == NULL)
+        return -1;
+    curr = head;
+    prev = NULL;
+    while (curr != NULL)
+    {
+        temp = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = temp;
+    }
+    temp = head;
+    head = tail;
+    tail = temp;
     return 0;
 }
