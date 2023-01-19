@@ -28,7 +28,7 @@ int remove_value(int);
 
 int main(void)
 {
-    int s, e, v, f, b, i;
+    int s, e, v, f, b, i, er;
 
     create(4);
     traverse();
@@ -73,18 +73,12 @@ int main(void)
     else
         traverse();
 
-    return 0;
-}
+    er = erase(3);
+    if (er == -1)
+        printf("Invalid index.\n");
+    else
+        traverse();
 
-int erase(int index)
-{
-    Node *node;
-    if (index < 0 || index > size())
-        return -1;
-    node = head;
-    for (int i = 0; i < index - 1; i++)
-        node = node->next;
-    node->next = node->next->next;
     return 0;
 }
 
@@ -284,5 +278,18 @@ int insert(int index, int value)
         p = p->next;
     node->next = p->next;
     p->next = node;
+    return 0;
+}
+
+int erase(int index)
+{
+    Node *node;
+    printf("--- Erasing at %d. ---\n",index);
+    if (index < 0 || index > size())
+        return -1;
+    node = head;
+    for (int i = 0; i < index - 1; i++)
+        node = node->next;
+    node->next = node->next->next;
     return 0;
 }
