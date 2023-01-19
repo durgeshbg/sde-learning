@@ -28,15 +28,15 @@ int remove_value(int);
 
 int main(void)
 {
-    int s, e, v, f, b;
+    int s, e, v, f, b, i;
 
-    create(3);
+    create(4);
     traverse();
 
     push_front(0);
     traverse();
 
-    push_back(4);
+    push_back(5);
     traverse();
 
     pop_front();
@@ -65,22 +65,14 @@ int main(void)
     if (f == -1 || b == -1)
         printf("List is empty.\n");
     else
-        printf("Front value: %d.\nBack value: %d.\n", f,b);
+        printf("Front value: %d.\nBack value: %d.\n", f, b);
 
-    return 0;
-}
+    i = insert(3, 0);
+    if (i == -1)
+        printf("Invalid index.\n");
+    else
+        traverse();
 
-int insert(int index, int value)
-{
-    Node *node, *p;
-    if (index > size() || index < 0)
-        return -1;
-    node->data = value;
-    p = head;
-    for (int i = 0; i < index - 1; i++)
-        p = p->next;
-    node->next = p->next;
-    p->next = node;
     return 0;
 }
 
@@ -277,4 +269,20 @@ int back()
     if (head == NULL)
         return -1;
     return tail->data;
+}
+
+int insert(int index, int value)
+{
+    Node *node, *p;
+    printf("*-*-* Inserting %d at %d.\n",index, value);
+    node = (Node*)malloc(sizeof(Node));
+    if (index > size() || index < 0)
+        return -1;
+    node->data = value;
+    p = head;
+    for (int i = 0; i < index - 1; i++)
+        p = p->next;
+    node->next = p->next;
+    p->next = node;
+    return 0;
 }
