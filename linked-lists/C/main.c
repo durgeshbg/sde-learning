@@ -37,19 +37,10 @@ int main(void)
     push_back(4);
     traverse();
 
-    return 0;
-}
+    pop_front();
+    traverse();
 
-int pop_front()
-{
-    int key;
-    if (head == NULL)
-        return -1;
-    key = head->data;
-    head = head->next;
-    if (head == NULL)
-        tail = NULL;
-    return key;
+    return 0;
 }
 
 int pop_back()
@@ -243,4 +234,17 @@ void push_back(int key)
         tail->next = node;
         tail = node;
     }
+}
+
+int pop_front()
+{
+    printf("---- Poping %d ----\n", head->data);
+    int key;
+    if (head == NULL)
+        return -1;
+    key = head->data;
+    head = head->next;
+    if (head == NULL)
+        tail = NULL;
+    return key;
 }
