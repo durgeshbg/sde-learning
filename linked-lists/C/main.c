@@ -83,7 +83,7 @@ int main(void)
     if (ve == -1)
         printf("Invalid index.\n");
     else
-        printf("Value at %d from end: %d.\n",2,ve);
+        printf("Value at %d from end: %d.\n", 2, ve);
 
     rev = reverse();
     if (rev == -1)
@@ -91,21 +91,12 @@ int main(void)
     else
         traverse();
 
-    return 0;
-}
-
-int remove_value(int value)
-{
-    Node *node;
-    if (head == NULL)
-        return -1;
-    node = head;
-    while (node->next->data != value || node->next != NULL)
-        node = node->next;
-    if (node->data == value)
-        node->next = node->next->next;
+    rv = remove_value(5);
+    if (rv == -1)
+        printf("Value not found.\n");
     else
-        return -1;
+        traverse();
+
     return 0;
 }
 
@@ -250,8 +241,8 @@ int back()
 int insert(int index, int value)
 {
     Node *node, *p;
-    printf("*-*-* Inserting %d at %d.\n",index, value);
-    node = (Node*)malloc(sizeof(Node));
+    printf("*-*-* Inserting %d at %d.\n", index, value);
+    node = (Node *)malloc(sizeof(Node));
     if (index > size() || index < 0)
         return -1;
     node->data = value;
@@ -266,7 +257,7 @@ int insert(int index, int value)
 int erase(int index)
 {
     Node *node;
-    printf("--- Erasing at %d. ---\n",index);
+    printf("--- Erasing at %d. ---\n", index);
     if (index < 0 || index > size())
         return -1;
     node = head;
@@ -290,6 +281,7 @@ int value_n_from_end(int n)
 int reverse()
 {
     Node *curr, *prev, *temp;
+    printf("-=-=- Reversing list -=-=-\n");
     if (head == NULL)
         return -1;
     curr = head;
@@ -304,5 +296,23 @@ int reverse()
     temp = head;
     head = tail;
     tail = temp;
+    return 0;
+}
+
+int remove_value(int value)
+{
+    Node *node;
+    printf("*-*-* Removing %d *-*-*\n", value);
+    if (head == NULL)
+        return -1;
+    node = head;
+    while (node->next->data != value && node->next->next != NULL)
+        node = node->next;
+
+    if (node->next->data == value)
+        node->next = node->next->next;
+    else
+        return -1;
+    
     return 0;
 }
