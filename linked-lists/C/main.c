@@ -9,7 +9,7 @@ typedef struct Node
 
 Node *head, *tail;
 
-void create();
+void create(int);
 void traverse();
 void push_front(int);
 void push_back(int);
@@ -28,7 +28,7 @@ int remove_value(int);
 
 int main(void)
 {
-    create();
+    create(3);
     traverse();
 
     push_front(0);
@@ -40,26 +40,10 @@ int main(void)
     pop_front();
     traverse();
 
-    return 0;
-}
+    pop_back();
+    traverse();
 
-int pop_back()
-{
-    int key;
-    Node *node = head;
-    if (head == NULL)
-        return -1;
-    key = tail->data;
-    if (head == tail)
-        head = NULL;
-    else
-    {
-        while (node->next->next != NULL)
-            node = node->next;
-        node->next = NULL;
-        tail = node;
-    }
-    return key;
+    return 0;
 }
 
 int size()
@@ -176,7 +160,7 @@ int remove_value(int value)
     return 0;
 }
 
-void create()
+void create(int n)
 {
     int i = 1;
     Node *node = (Node *)malloc(sizeof(Node));
@@ -184,7 +168,7 @@ void create()
     while (1)
     {
         node->data = i;
-        if (i == 3)
+        if (i == n)
             break;
         node->next = (Node *)malloc(sizeof(Node));
         node = node->next;
@@ -246,5 +230,25 @@ int pop_front()
     head = head->next;
     if (head == NULL)
         tail = NULL;
+    return key;
+}
+
+int pop_back()
+{
+    int key;
+    Node *node = head;
+    printf("---- Poping %d ----\n", tail->data);
+    if (head == NULL)
+        return -1;
+    key = tail->data;
+    if (head == tail)
+        head = NULL;
+    else
+    {
+        while (node->next->next != NULL)
+            node = node->next;
+        node->next = NULL;
+        tail = node;
+    }
     return key;
 }
