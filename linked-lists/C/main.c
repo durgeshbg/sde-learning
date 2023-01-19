@@ -28,7 +28,7 @@ int remove_value(int);
 
 int main(void)
 {
-    int s, e;
+    int s, e, v;
 
     create(3);
     traverse();
@@ -54,17 +54,13 @@ int main(void)
     else
         printf("The list is not empty.\n");
 
+    v = value_at(2);
+    if (v == -1)
+        printf("Invalid index.\n");
+    else
+        printf("The value at %d is: %d.\n", 2, v);
+        
     return 0;
-}
-
-int value_at(int n)
-{
-    Node *node = head;
-    if (n > size() || n < 0)
-        return -1;
-    for (int i = 0; i < n; i++)
-        node = node->next;
-    return node->data;
 }
 
 int front()
@@ -264,4 +260,14 @@ int empty()
     if (head == NULL)
         return 1;
     return 0;
+}
+
+int value_at(int n)
+{
+    Node *node = head;
+    if (n > size() || n < 0)
+        return -1;
+    for (int i = 0; i < n; i++)
+        node = node->next;
+    return node->data;
 }
