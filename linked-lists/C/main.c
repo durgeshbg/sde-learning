@@ -28,6 +28,8 @@ int remove_value(int);
 
 int main(void)
 {
+    int s;
+
     create(3);
     traverse();
 
@@ -43,19 +45,10 @@ int main(void)
     pop_back();
     traverse();
 
-    return 0;
-}
+    s = size();
+    printf("Size of the list: %d\n",s);
 
-int size()
-{
-    int s = 0;
-    Node *node = head;
-    while (node->next != NULL)
-    {
-        s++;
-        node = node->next;
-    }
-    return s;
+    return 0;
 }
 
 int empty()
@@ -251,4 +244,18 @@ int pop_back()
         tail = node;
     }
     return key;
+}
+
+int size()
+{
+    int s = 1;
+    Node *node = head;
+    if (head == NULL)
+        return 0;
+    while (node->next != NULL)
+    {
+        s++;
+        node = node->next;
+    }
+    return s;
 }
