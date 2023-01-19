@@ -187,23 +187,18 @@ int remove_value(int value)
 
 void create()
 {
-    int n;
+    int i = 1;
     Node *node = (Node *)malloc(sizeof(Node));
-    printf("Enter -999 to end the list.\n");
-    printf("Enter data: ");
-    scanf("%d", &n);
-
     head = node;
     while (1)
     {
-        node->data = n;
-        printf("Enter data: ");
-        scanf("%d", &n);
-        if (n == -999)
+        node->data = i;
+        if (i == 3)
             break;
         node->next = (Node *)malloc(sizeof(Node));
         node = node->next;
         node->next = NULL;
+        i++;
     }
     tail = node;
 }
