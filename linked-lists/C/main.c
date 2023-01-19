@@ -31,28 +31,13 @@ int main(void)
     create();
     traverse();
 
-    printf("....Pushing 0 front....");
     push_front(0);
     traverse();
 
-    return 0;
-}
+    push_back(4);
+    traverse();
 
-void push_back(int key)
-{
-    Node *node = (Node *)malloc(sizeof(Node));
-    node->data = key;
-    node->next = NULL;
-    if (tail == NULL)
-    {
-        head = node;
-        tail = node;
-    }
-    else
-    {
-        tail->next = node;
-        tail = node;
-    }
+    return 0;
 }
 
 int pop_front()
@@ -209,13 +194,15 @@ void create()
     scanf("%d", &n);
 
     head = node;
-    while (n != -999)
+    while (1)
     {
         node->data = n;
-        node->next = (Node *)malloc(sizeof(Node));
-        node = node->next;
         printf("Enter data: ");
         scanf("%d", &n);
+        if (n == -999)
+            break;
+        node->next = (Node *)malloc(sizeof(Node));
+        node = node->next;
         node->next = NULL;
     }
     tail = node;
@@ -226,7 +213,7 @@ void traverse()
     Node *node = head;
     int i = 0;
     printf("*-*-* Elements *-*-*\n");
-    while (node->next != NULL)
+    while (node != NULL)
     {
         printf("%d. %d\n", i, node->data);
         node = node->next;
@@ -237,9 +224,28 @@ void traverse()
 void push_front(int key)
 {
     Node *node = (Node *)malloc(sizeof(Node));
+    printf("....Pushing %d front....\n", key);
     node->data = key;
     node->next = head;
     head = node;
     if (tail == NULL)
         tail = head;
+}
+
+void push_back(int key)
+{
+    Node *node = (Node *)malloc(sizeof(Node));
+    printf("....Pushing %d back....\n", key);
+    node->data = key;
+    node->next = NULL;
+    if (head == NULL)
+    {
+        head = node;
+        tail = node;
+    }
+    else
+    {
+        tail->next = node;
+        tail = node;
+    }
 }
