@@ -83,14 +83,16 @@ class LinkedList:
         return p.data
 
 
-    def front():
-        ...
+    def front(head):
+        if head == None:
+            raise IndexError("Empty list")
+        return head.data
 
     def back():
         ...
 
     def insert(data, index):
-        ...
+        
 
     def erase(data):
         ...
