@@ -51,8 +51,13 @@ class LinkedList:
     def pop_back():
         ...
 
-    def size():
-        ...
+    def size(head):
+        p = head
+        s = 0
+        while p:
+            s=s+1
+            p = p.next
+        return s
 
     def empty():
         ...
