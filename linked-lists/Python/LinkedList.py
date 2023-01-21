@@ -20,7 +20,10 @@ class LinkedList:
         ...
     
     def traverse(head):
-        ...
+        node = head
+        while node:
+            print(f"{node.data} ->",end=' ')
+            node = node.next
 
     def push_front(data):
         ...
