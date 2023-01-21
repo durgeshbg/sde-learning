@@ -60,7 +60,9 @@ class LinkedList:
         return s
 
     def empty():
-        ...
+        if head == None:
+            return True
+        return False
 
     def value_at(data):
         ...
