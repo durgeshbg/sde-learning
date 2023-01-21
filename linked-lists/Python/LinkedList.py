@@ -1,7 +1,7 @@
 class Node:
-    def __init__(self, data, next):
+    def __init__(self, data, next=None):
         self.data = data
-        self.next = None
+        self.next = next
 
     @property
     def data(self):
@@ -19,22 +19,23 @@ class LinkedList:
 
     def traverse(head):
         node = head
-        print("Elements: ",end=" ")
+        print("Elements: ", end=" ")
         while node:
-            print(f"{node.data} ->", end=" ")
+            print(f"{node.data}", end=" ")
             node = node.next
+        print()
 
     def push_front(head, tail, data):
         print(f"Pushing {data} front...")
-        node = Node(data, next)
+        node = Node(data)
         node.next = head
         head = node
         if tail == None:
             tail = head
 
-    def push_back(head, tail,data):
+    def push_back(head, tail, data):
         print(f"Pushing {data} back...")
-        node = Node(data, next)
+        node = Node(data)
         p = head
         if head == NULL:
             head = tail = node
@@ -43,7 +44,7 @@ class LinkedList:
         p.next = node
         tail = node
 
-    def pop_front(head,tail):
+    def pop_front(head, tail):
         if head == None:
             raise IndexError("Empty List")
         value = head.data
@@ -52,7 +53,7 @@ class LinkedList:
             tail = None
         return value
 
-    def pop_back(head,tail):
+    def pop_back(head, tail):
         if head == None:
             raise IndexError("Empty List")
         p = head
@@ -89,7 +90,7 @@ class LinkedList:
             raise IndexError("Empty list")
         return head.data
 
-    def back(head,tail):
+    def back(head, tail):
         if head == None:
             raise IndexError("Empty list")
         return tail.data
@@ -98,7 +99,7 @@ class LinkedList:
         if index > size() or index < 0:
             raise IndexError("Invalid index")
         print(f"Inserting {data} at {index}...")
-        node = Node(data, next)
+        node = Node(data)
         p = head
         for i in range(index - 1):
             p = p.next
@@ -123,7 +124,7 @@ class LinkedList:
             p = p.next
         return p.data
 
-    def reverse(head,tail):
+    def reverse(head, tail):
         prev = None
         curr = head
         while curr.next:
