@@ -38,12 +38,13 @@ class LinkedList:
         print(f"Pushing {data} back...")
         node = Node(data)
         p = head
-        if head == NULL:
+        if head == None:
             head = tail = node
         while p.next:
             p = p.next
         p.next = node
         tail = node
+        return head, tail
 
     def pop_front(head, tail):
         if head == None:

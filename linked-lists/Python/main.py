@@ -18,3 +18,6 @@ LinkedList.traverse(head)
 
 head, tail = LinkedList.push_front(head, tail, 0)
 LinkedList.traverse(head)
+
+head, tail = LinkedList.push_back(head, tail, 6)
+LinkedList.traverse(head)
