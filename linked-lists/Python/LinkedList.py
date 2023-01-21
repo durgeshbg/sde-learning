@@ -133,5 +133,14 @@ class LinkedList:
         head = tail
         tail = temp
 
-    def remove_value(data):
-        ...
+    def remove_value(head, data):
+        p = head
+        if p.data == data:
+            return 0
+        while p.next.data != data or p.next.next == None:
+            p = p.next
+        if p.next.next == data and p.next.data == data:
+            p.next = p.next.next
+        else:
+            return -1
+        return 0
