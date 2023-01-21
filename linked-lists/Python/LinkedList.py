@@ -32,6 +32,7 @@ class LinkedList:
         head = node
         if tail == None:
             tail = head
+        return head, tail
 
     def push_back(head, tail, data):
         print(f"Pushing {data} back...")

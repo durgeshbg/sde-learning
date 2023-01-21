@@ -10,8 +10,11 @@ def create(n):
         node.next = Node(i)
         node = node.next
     tail = node
-    return head,tail
+    return head, tail
 
-head,tail = create(5)
 
+head, tail = create(5)
+LinkedList.traverse(head)
+
+head, tail = LinkedList.push_front(head, tail, 0)
 LinkedList.traverse(head)
