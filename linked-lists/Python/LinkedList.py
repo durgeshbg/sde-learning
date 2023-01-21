@@ -46,10 +46,20 @@ class LinkedList:
     def pop_front(head):
         if head == None:
             raise IndexError("Empty List")
+        value = head.data
         head = head.next
+        return value
 
-    def pop_back():
-        ...
+    def pop_back(head):
+        if head == None:
+            raise IndexError("Empty List")
+        p = head
+        while p.next.next:
+            p = p.next
+        value = p.next.data
+        p.next = None
+        tail = p
+        return value
 
     def size(head):
         p = head
