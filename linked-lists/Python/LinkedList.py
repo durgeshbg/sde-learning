@@ -25,8 +25,10 @@ class LinkedList:
             print(f"{node.data} ->",end=' ')
             node = node.next
 
-    def push_front(data):
-        ...
+    def push_front(head, data):
+        node = Node(data, next)
+        node.next = head
+        head = node
 
     def push_front(data):
         ...
