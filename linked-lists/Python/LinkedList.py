@@ -88,8 +88,10 @@ class LinkedList:
             raise IndexError("Empty list")
         return head.data
 
-    def back():
-        ...
+    def back(head):
+        if head == None:
+            raise IndexError("Empty list")
+        return tail.data
 
     def insert(data, index):
         
