@@ -29,3 +29,6 @@ LinkedList.traverse(head)
 value, head, tail = LinkedList.pop_back(head, tail)
 print(f"Poped {value}")
 LinkedList.traverse(head)
+
+s = LinkedList.size(head)
+print(f"Size: {s}")
