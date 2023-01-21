@@ -32,3 +32,8 @@ LinkedList.traverse(head)
 
 s = LinkedList.size(head)
 print(f"Size: {s}")
+
+if LinkedList.empty(head):
+    print("List is empty")
+else:
+    print("List is not empty")
