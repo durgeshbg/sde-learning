@@ -48,6 +48,8 @@ class LinkedList:
             raise IndexError("Empty List")
         value = head.data
         head = head.next
+        if head == None:
+            tail = None
         return value
 
     def pop_back(head):
@@ -65,7 +67,7 @@ class LinkedList:
         p = head
         s = 0
         while p:
-            s=s+1
+            s = s + 1
             p = p.next
         return s
 
@@ -82,7 +84,6 @@ class LinkedList:
             p = p.next
         return p.data
 
-
     def front(head):
         if head == None:
             raise IndexError("Empty list")
@@ -98,13 +99,18 @@ class LinkedList:
             raise IndexError("Invalid index")
         node = Node(data, next)
         p = head
-        for i in range(index-1):
+        for i in range(index - 1):
             p = p.next
         node.next = p.next
         p.next = node
 
-    def erase(data):
-        ...
+    def erase(head, index):
+        if index > size() or index < 0:
+            raise IndexError("Invalid index")
+        p = head
+        for i in range(index - 1):
+            p = p.next
+        p.next = p.next.next
 
     def value_n_from_end(data):
         ...
