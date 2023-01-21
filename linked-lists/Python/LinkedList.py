@@ -33,7 +33,7 @@ class LinkedList:
         if tail == None:
             tail = head
 
-    def push_back(head, data):
+    def push_back(head, tail,data):
         node = Node(data, next)
         p = head
         if head == NULL:
@@ -43,7 +43,7 @@ class LinkedList:
         p.next = node
         tail = node
 
-    def pop_front(head):
+    def pop_front(head,tail):
         if head == None:
             raise IndexError("Empty List")
         value = head.data
@@ -52,7 +52,7 @@ class LinkedList:
             tail = None
         return value
 
-    def pop_back(head):
+    def pop_back(head,tail):
         if head == None:
             raise IndexError("Empty List")
         p = head
@@ -89,7 +89,7 @@ class LinkedList:
             raise IndexError("Empty list")
         return head.data
 
-    def back(head):
+    def back(head,tail):
         if head == None:
             raise IndexError("Empty list")
         return tail.data
@@ -121,8 +121,17 @@ class LinkedList:
             p = p.next
         return p.data
 
-    def reverse():
-        ...
+    def reverse(head,tail):
+        prev = None
+        curr = head
+        while curr.next:
+            temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = temp
+        temp = head
+        head = tail
+        tail = temp
 
     def remove_value(data):
         ...
