@@ -112,8 +112,14 @@ class LinkedList:
             p = p.next
         p.next = p.next.next
 
-    def value_n_from_end(data):
-        ...
+    def value_n_from_end(head, index):
+        index = size() - index + 1
+        if index > size() or index < 0:
+            raise IndexError("Invalid index")
+        p = head
+        for i in range(index):
+            p = p.next
+        return p.data
 
     def reverse():
         ...
