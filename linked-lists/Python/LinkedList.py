@@ -2,14 +2,15 @@ class Node:
     def __init__(self, data, next):
         self.data = data
         self.next = None
-    
+
     @property
     def data(self):
         return self._data
+
     @data.setter
     def data(self, data):
         self._data = data
-    
+
 
 class LinkedList:
     def __init__(self):
@@ -18,23 +19,29 @@ class LinkedList:
 
     def create():
         ...
-    
+
     def traverse(head):
         node = head
         while node:
-            print(f"{node.data} ->",end=' ')
+            print(f"{node.data} ->", end=" ")
             node = node.next
 
-    def push_front(head, data):
+    def push_front(head, tail, data):
         node = Node(data, next)
         node.next = head
         head = node
+        if tail == None:
+            tail = head
 
-    def push_front(data):
-        ...
-
-    def push_back(data):
-        ...
+    def push_back(head, data):
+        node = Node(data, next)
+        p = head
+        if head == NULL:
+            head = tail = node
+        while p.next:
+            p = p.next
+        p.next = node
+        tail = node
 
     def pop_front():
         ...
