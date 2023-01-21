@@ -21,3 +21,7 @@ LinkedList.traverse(head)
 
 head, tail = LinkedList.push_back(head, tail, 6)
 LinkedList.traverse(head)
+
+value, head, tail = LinkedList.pop_front(head, tail)
+print(f"Poped {value}")
+LinkedList.traverse(head)

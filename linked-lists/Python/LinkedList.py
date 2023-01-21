@@ -53,7 +53,7 @@ class LinkedList:
         head = head.next
         if head == None:
             tail = None
-        return value
+        return value, head, tail
 
     def pop_back(head, tail):
         if head == None:
@@ -64,7 +64,7 @@ class LinkedList:
         value = p.next.data
         p.next = None
         tail = p
-        return value
+        return value,head,tail
 
     def size(head):
         p = head
