@@ -17,16 +17,15 @@ class LinkedList:
         self.head = None
         self.tail = None
 
-    def create():
-        ...
-
     def traverse(head):
         node = head
+        print("Elements: ",end=" ")
         while node:
             print(f"{node.data} ->", end=" ")
             node = node.next
 
     def push_front(head, tail, data):
+        print(f"Pushing {data} front...")
         node = Node(data, next)
         node.next = head
         head = node
@@ -34,6 +33,7 @@ class LinkedList:
             tail = head
 
     def push_back(head, tail,data):
+        print(f"Pushing {data} back...")
         node = Node(data, next)
         p = head
         if head == NULL:
@@ -97,6 +97,7 @@ class LinkedList:
     def insert(head, index, data):
         if index > size() or index < 0:
             raise IndexError("Invalid index")
+        print(f"Inserting {data} at {index}...")
         node = Node(data, next)
         p = head
         for i in range(index - 1):
@@ -107,6 +108,7 @@ class LinkedList:
     def erase(head, index):
         if index > size() or index < 0:
             raise IndexError("Invalid index")
+        print(f"Erasing {index}...")
         p = head
         for i in range(index - 1):
             p = p.next
