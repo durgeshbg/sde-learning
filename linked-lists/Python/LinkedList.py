@@ -59,13 +59,19 @@ class LinkedList:
             p = p.next
         return s
 
-    def empty():
+    def empty(head):
         if head == None:
             return True
         return False
 
-    def value_at(data):
-        ...
+    def value_at(head, index):
+        p = head
+        if index > size() or index < 0:
+            raise IndexError("Invalid index")
+        for i in range(index):
+            p = p.next
+        return p.data
+
 
     def front():
         ...
