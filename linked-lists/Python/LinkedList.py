@@ -93,8 +93,15 @@ class LinkedList:
             raise IndexError("Empty list")
         return tail.data
 
-    def insert(data, index):
-        
+    def insert(head, index, data):
+        if index > size() or index < 0:
+            raise IndexError("Invalid index")
+        node = Node(data, next)
+        p = head
+        for i in range(index-1):
+            p = p.next
+        node.next = p.next
+        p.next = node
 
     def erase(data):
         ...
