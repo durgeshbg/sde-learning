@@ -14,26 +14,30 @@ def create(n):
 
 
 head, tail = create(5)
-LinkedList.traverse(head)
+ll = LinkedList(head,tail)
+ll.traverse()
 
-head, tail = LinkedList.push_front(head, tail, 0)
-LinkedList.traverse(head)
+ll.push_front(0)
+ll.traverse()
 
-head, tail = LinkedList.push_back(head, tail, 6)
-LinkedList.traverse(head)
+ll.push_back(6)
+ll.traverse()
 
-value, head, tail = LinkedList.pop_front(head, tail)
-print(f"Poped {value}")
-LinkedList.traverse(head)
+value = ll.pop_front()
+print(f"Poped front: {value}")
+ll.traverse()
 
-value, head, tail = LinkedList.pop_back(head, tail)
-print(f"Poped {value}")
-LinkedList.traverse(head)
+value = ll.pop_back()
+print(f"Poped back: {value}")
+ll.traverse()
 
-s = LinkedList.size(head)
+s = ll.size()
 print(f"Size: {s}")
 
-if LinkedList.empty(head):
+if ll.empty():
     print("List is empty")
 else:
     print("List is not empty")
+
+v = ll.value_at(3)
+print(f"Value at 2: {v}")

@@ -13,75 +13,73 @@ class Node:
 
 
 class LinkedList:
-    def __init__(self):
-        self.head = None
-        self.tail = None
+    def __init__(self,head =None,tail= None):
+        self.head = head
+        self.tail = tail
 
-    def traverse(head):
-        node = head
+    def traverse(self):
+        node = self.head
         print("Elements: ", end=" ")
         while node:
             print(f"{node.data}", end=" ")
             node = node.next
         print()
 
-    def push_front(head, tail, data):
+    def push_front(self,data):
         print(f"Pushing {data} front...")
         node = Node(data)
-        node.next = head
-        head = node
-        if tail == None:
-            tail = head
-        return head, tail
+        node.next = self.head
+        self.head = node
+        if self.tail == None:
+            self.tail = self.head
 
-    def push_back(head, tail, data):
+    def push_back(self,data):
         print(f"Pushing {data} back...")
         node = Node(data)
-        p = head
-        if head == None:
-            head = tail = node
+        p = self.head
+        if self.head == None:
+            self.head = self.tail = node
         while p.next:
             p = p.next
         p.next = node
-        tail = node
-        return head, tail
+        self.tail = node
 
-    def pop_front(head, tail):
-        if head == None:
+    def pop_front(self):
+        if self.head == None:
             raise IndexError("Empty List")
-        value = head.data
-        head = head.next
-        if head == None:
-            tail = None
-        return value, head, tail
+        value = self.head.data
+        self.head = self.head.next
+        if self.head == None:
+            self.tail = None
+        return value
 
-    def pop_back(head, tail):
-        if head == None:
+    def pop_back(self):
+        if self.head == None:
             raise IndexError("Empty List")
-        p = head
+        p = self.head
         while p.next.next:
             p = p.next
         value = p.next.data
         p.next = None
-        tail = p
-        return value,head,tail
+        self.tail = p
+        return value
 
-    def size(head):
-        p = head
+    def size(self):
+        p = self.head
         s = 0
         while p:
             s = s + 1
             p = p.next
         return s
 
-    def empty(head):
-        if head == None:
+    def empty(self):
+        if self.head == None:
             return True
         return False
 
-    def value_at(head, index):
-        p = head
-        if index > size() or index < 0:
+    def value_at(self,index):
+        p = self.head
+        if index > self.size() or index < 0:
             raise IndexError("Invalid index")
         for i in range(index):
             p = p.next
