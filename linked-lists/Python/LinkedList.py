@@ -106,13 +106,13 @@ class LinkedList:
         node.next = p.next
         p.next = node
 
-    def erase(head, index):
-        if index > size() or index < 0:
+    def erase(self, index):
+        if index > self.size() or index < 0:
             raise IndexError("Invalid index")
-        print(f"Erasing {index}...")
-        p = head
+        p = self.head
         for i in range(index - 1):
             p = p.next
+        print(f"Erasing {p.next.data} at {index}...")
         p.next = p.next.next
 
     def value_n_from_end(head, index):

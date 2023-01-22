@@ -14,7 +14,7 @@ def create(n):
 
 
 head, tail = create(5)
-ll = LinkedList(head,tail)
+ll = LinkedList(head, tail)
 ll.traverse()
 
 ll.push_front(0)
@@ -49,4 +49,7 @@ b = ll.back()
 print(f"Back value: {b}")
 
 ll.insert(2, 2.5)
+ll.traverse()
+
+ll.erase(2)
 ll.traverse()
