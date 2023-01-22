@@ -90,10 +90,10 @@ class LinkedList:
             raise IndexError("Empty list")
         return self.head.data
 
-    def back(head, tail):
-        if head == None:
+    def back(self):
+        if self.head == None:
             raise IndexError("Empty list")
-        return tail.data
+        return self.tail.data
 
     def insert(head, index, data):
         if index > size() or index < 0:

@@ -44,3 +44,6 @@ print(f"Value at 2: {v}")
 
 f = ll.front()
 print((f"Front value: {f}"))
+
+b = ll.back()
+print(f"Back value: {b}")
