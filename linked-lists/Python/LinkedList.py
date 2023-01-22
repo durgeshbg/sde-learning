@@ -115,11 +115,11 @@ class LinkedList:
         print(f"Erasing {p.next.data} at {index}...")
         p.next = p.next.next
 
-    def value_n_from_end(head, index):
-        index = size() - index + 1
-        if index > size() or index < 0:
+    def value_n_from_end(self, index):
+        index = self.size() - index
+        if index > self.size() or index < 0:
             raise IndexError("Invalid index")
-        p = head
+        p = self.head
         for i in range(index):
             p = p.next
         return p.data
