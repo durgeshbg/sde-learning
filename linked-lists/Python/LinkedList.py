@@ -85,10 +85,10 @@ class LinkedList:
             p = p.next
         return p.data
 
-    def front(head):
-        if head == None:
+    def front(self):
+        if self.head == None:
             raise IndexError("Empty list")
-        return head.data
+        return self.head.data
 
     def back(head, tail):
         if head == None:

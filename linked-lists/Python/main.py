@@ -23,12 +23,12 @@ ll.traverse()
 ll.push_back(6)
 ll.traverse()
 
-value = ll.pop_front()
-print(f"Poped front: {value}")
+v = ll.pop_front()
+print(f"Poped front: {v}")
 ll.traverse()
 
-value = ll.pop_back()
-print(f"Poped back: {value}")
+v = ll.pop_back()
+print(f"Poped back: {v}")
 ll.traverse()
 
 s = ll.size()
@@ -41,3 +41,6 @@ else:
 
 v = ll.value_at(3)
 print(f"Value at 2: {v}")
+
+f = ll.front()
+print((f"Front value: {f}"))
