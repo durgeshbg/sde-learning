@@ -59,3 +59,6 @@ print(f"Value at 2 from end: {v}")
 
 ll.reverse()
 ll.traverse()
+
+ll.remove_value(2)
+ll.traverse()
