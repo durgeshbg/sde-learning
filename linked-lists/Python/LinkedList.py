@@ -81,7 +81,7 @@ class LinkedList:
         p = self.head
         if index > self.size() or index < 0:
             raise IndexError("Invalid index")
-        for i in range(index):
+        for i in range(index - 1):
             p = p.next
         return p.data
 
@@ -124,26 +124,30 @@ class LinkedList:
             p = p.next
         return p.data
 
-    def reverse(head, tail):
+    def reverse(self):
+        print("Reversing...")
         prev = None
-        curr = head
-        while curr.next:
+        curr = self.head
+        while curr:
             temp = curr.next
             curr.next = prev
             prev = curr
             curr = temp
-        temp = head
-        head = tail
-        tail = temp
+        self.head, self.tail = self.tail, self.head
 
-    def remove_value(head, data):
-        p = head
+    def remove_value(self, data):
+        p = self.head
         if p.data == data:
-            return 0
-        while p.next.data != data or p.next.next == None:
             p = p.next
-        if p.next.next == data and p.next.data == data:
+            head = p
+            return 0
+        while p.next.data != data and p.next.next != None:
+            p = p.next
+        if p.next.data == data or p.next.next != None:
+            print(f"Removing {data}...")
             p.next = p.next.next
+            if p.next == None:
+                tail = p
         else:
-            return -1
+            print("Value not found")
         return 0

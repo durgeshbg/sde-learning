@@ -56,3 +56,6 @@ ll.traverse()
 
 v = ll.value_n_from_end(2)
 print(f"Value at 2 from end: {v}")
+
+ll.reverse()
+ll.traverse()
