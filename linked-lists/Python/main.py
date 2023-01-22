@@ -47,3 +47,6 @@ print((f"Front value: {f}"))
 
 b = ll.back()
 print(f"Back value: {b}")
+
+ll.insert(2, 2.5)
+ll.traverse()

@@ -13,19 +13,19 @@ class Node:
 
 
 class LinkedList:
-    def __init__(self,head =None,tail= None):
+    def __init__(self, head=None, tail=None):
         self.head = head
         self.tail = tail
 
     def traverse(self):
         node = self.head
         print("Elements: ", end=" ")
-        while node:
-            print(f"{node.data}", end=" ")
+        while node.next:
+            print(f"{node.data}", end=" -> ")
             node = node.next
-        print()
+        print(node.data)
 
-    def push_front(self,data):
+    def push_front(self, data):
         print(f"Pushing {data} front...")
         node = Node(data)
         node.next = self.head
@@ -33,7 +33,7 @@ class LinkedList:
         if self.tail == None:
             self.tail = self.head
 
-    def push_back(self,data):
+    def push_back(self, data):
         print(f"Pushing {data} back...")
         node = Node(data)
         p = self.head
@@ -77,7 +77,7 @@ class LinkedList:
             return True
         return False
 
-    def value_at(self,index):
+    def value_at(self, index):
         p = self.head
         if index > self.size() or index < 0:
             raise IndexError("Invalid index")
@@ -95,12 +95,12 @@ class LinkedList:
             raise IndexError("Empty list")
         return self.tail.data
 
-    def insert(head, index, data):
-        if index > size() or index < 0:
+    def insert(self, index, data):
+        if index > self.size() or index < 0:
             raise IndexError("Invalid index")
         print(f"Inserting {data} at {index}...")
         node = Node(data)
-        p = head
+        p = self.head
         for i in range(index - 1):
             p = p.next
         node.next = p.next
